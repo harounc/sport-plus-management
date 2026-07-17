@@ -16,8 +16,11 @@ sudo chown -R spm:www-data /srv/spm
 
 ```bash
 sudo -u postgres psql
+CREATE DATABASE spm_db;
 CREATE USER spm WITH PASSWORD 'MOT_DE_PASSE_FORT';
-CREATE DATABASE spm OWNER spm;
+GRANT ALL PRIVILEGES ON DATABASE spm_db TO spm;
+\c spm_db
+GRANT ALL ON SCHEMA public TO spm;
 \q
 ```
 
