@@ -5,11 +5,11 @@ After=network.target postgresql.service
 [Service]
 User=spm
 Group=www-data
-WorkingDirectory=/var/www/spm
+WorkingDirectory=/srv/spm
 EnvironmentFile=/etc/spm.env
 RuntimeDirectory=spm
 RuntimeDirectoryMode=0755
-ExecStart=/var/www/spm/.venv/bin/gunicorn --workers 3 --bind unix:/run/spm/gunicorn.sock --access-logfile - --error-logfile - spm.wsgi:application
+ExecStart=/srv/spm/.venv/bin/gunicorn --workers 3 --bind unix:/run/spm/gunicorn.sock --access-logfile - --error-logfile - spm.wsgi:application
 Restart=always
 RestartSec=5
 PrivateTmp=true

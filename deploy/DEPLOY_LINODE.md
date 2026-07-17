@@ -7,8 +7,9 @@ Prévu pour Ubuntu 24.04, Nginx, PostgreSQL, Gunicorn et Certbot. L’applicatio
 ```bash
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y python3-venv python3-pip postgresql nginx certbot python3-certbot-nginx git
-sudo adduser --system --group --home /var/www/spm spm
-sudo chown -R spm:www-data /var/www/spm
+sudo adduser --system --group --home /srv/spm spm
+sudo mkdir -p /srv/spm
+sudo chown -R spm:www-data /srv/spm
 ```
 
 ## 2. Base PostgreSQL
@@ -22,10 +23,10 @@ CREATE DATABASE spm OWNER spm;
 
 ## 3. Application
 
-Copier ou cloner le projet dans `/var/www/spm`, puis :
+Copier ou cloner le projet dans `/srv/spm`, puis :
 
 ```bash
-cd /var/www/spm
+cd /srv/spm
 sudo -u spm python3 -m venv .venv
 sudo -u spm .venv/bin/pip install -r requirements.txt
 sudo cp .env.production.example /etc/spm.env
@@ -71,4 +72,4 @@ sudo journalctl -u spm -n 100 --no-pager
 curl -I https://harounc.com
 ```
 
-Prévoir des sauvegardes quotidiennes de PostgreSQL et du dossier `/var/www/spm/media`.
+Prévoir des sauvegardes quotidiennes de PostgreSQL et du dossier `/srv/spm/media`.
