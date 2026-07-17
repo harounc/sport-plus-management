@@ -1,0 +1,12 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}{{ joueur.nom }} | Sport Plus Management{% endblock %}
+{% block content %}<section class="section"><div class="container">
+<nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="{% url 'pages:home' %}">Accueil</a><span>›</span><a href="{% url 'joueurs:list' %}">Nos joueurs</a><span>›</span><span>{{ joueur.nom }}</span></nav>
+<div class="player-detail">
+  {% if joueur.photo %}<img src="{{ joueur.photo.url }}" alt="{{ joueur.nom }}">{% else %}<img class="detail-photo" src="{% static joueur.fallback_image %}" alt="Portrait de {{ joueur.nom }}">{% endif %}
+  <div><span class="eyebrow">{{ joueur.poste }}</span><h1>{{ joueur.nom }}</h1>
+    <dl class="info-grid"><div><dt>Âge</dt><dd>{{ joueur.age }} ans</dd></div><div><dt>Club</dt><dd>{{ joueur.club_actuel }}</dd></div><div><dt>Nationalité</dt><dd>{{ joueur.nationalite }}</dd></div><div><dt>Pied fort</dt><dd>{{ joueur.pied_fort }}</dd></div></dl>
+    <p>{{ joueur.description }}</p><div class="player-stats"><div><b>{{ joueur.matchs }}</b><span>Matchs</span></div><div><b>{{ joueur.buts }}</b><span>Buts</span></div><div><b>{{ joueur.passes_decisives }}</b><span>Passes décisives</span></div></div>
+    <a class="btn btn-red" href="{% url 'pages:contact' %}?joueur={{ joueur.slug }}">Contacter l’agence à propos de ce joueur</a>
+  </div>
+</div></div></section>{% endblock %}

@@ -1,0 +1,4 @@
+{% load static %}<a class="card news-card" href="{{ article.get_absolute_url }}">
+  {% if article.image %}<img src="{{ article.image.url }}" alt="{{ article.titre }}" loading="lazy">{% else %}<img src="{% static article.fallback_image %}" alt="{{ article.titre }}" loading="lazy">{% endif %}
+  <div class="card-body"><time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:'j F Y' }}</time><h3>{{ article.titre }}</h3><p>{{ article.extrait }}</p></div>
+</a>

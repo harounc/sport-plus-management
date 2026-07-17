@@ -1,0 +1,30 @@
+{% load static %}<!doctype html>
+<html lang="fr"><head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}Sport Plus Management{% endblock %}</title>
+  <meta name="description" content="{% block description %}Sport Plus Management, représentation et gestion de carrière de joueurs de football à Abidjan.{% endblock %}">
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+</head><body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <div class="ticker" aria-label="Dernières actualités"><div class="ticker-track">
+    {% for article in ticker_news %}<span>{{ article.titre }}</span><b>●</b>{% empty %}<span>Agence licenciée FIFA — Abidjan, Côte d’Ivoire</span><b>●</b>{% endfor %}
+    {% for article in ticker_news %}<span aria-hidden="true">{{ article.titre }}</span><b aria-hidden="true">●</b>{% endfor %}
+  </div></div>
+  <header class="site-header"><div class="container nav-wrap">
+    <a href="{% url 'pages:home' %}" class="brand brand-logo" aria-label="Sport Plus Management — Accueil"><img src="{% static 'images/logo_spm.jpeg' %}" alt="Sport Plus Management"></a>
+    <nav class="desktop-nav" aria-label="Navigation principale">
+      <a class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'pages:home' %}">Accueil</a>
+      <a class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'pages:about' %}">À propos</a>
+      <a class="{% if request.resolver_match.url_name == 'services' %}active{% endif %}" href="{% url 'pages:services' %}">Services</a>
+      <a class="{% if request.resolver_match.namespace == 'joueurs' %}active{% endif %}" href="{% url 'joueurs:list' %}">Nos joueurs</a>
+      <a class="{% if request.resolver_match.namespace == 'actualites' %}active{% endif %}" href="{% url 'actualites:list' %}">Actualités</a>
+      <a class="btn btn-red" href="{% url 'pages:contact' %}">Contact</a>
+    </nav><button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu"><i></i><i></i><i></i></button>
+  </div></header>
+  <div id="mobile-menu" class="mobile-menu" hidden><button class="menu-close" aria-label="Fermer le menu">×</button><nav>
+    <a href="{% url 'pages:home' %}">Accueil</a><a href="{% url 'pages:about' %}">À propos</a><a href="{% url 'pages:services' %}">Services</a><a href="{% url 'joueurs:list' %}">Nos joueurs</a><a href="{% url 'actualites:list' %}">Actualités</a><a class="btn btn-red" href="{% url 'pages:contact' %}">Contact</a>
+  </nav></div>
+  <main id="main">{% block content %}{% endblock %}</main>
+  <footer><div class="container footer-grid"><div><a class="brand brand-light brand-logo footer-logo" href="{% url 'pages:home' %}"><img src="{% static 'images/logo_spm.jpeg' %}" alt="Sport Plus Management"></a><p>Représentation et gestion de carrière de joueurs de football. Agent licencié FIFA.</p></div><div><h3>Liens rapides</h3><a href="{% url 'pages:about' %}">À propos</a><a href="{% url 'pages:services' %}">Services</a><a href="{% url 'joueurs:list' %}">Nos joueurs</a><a href="{% url 'actualites:list' %}">Actualités</a></div><div><h3>Coordonnées</h3><p>+225 07 00 00 00 00<br>contact@sportplusmanagement.com<br>Abidjan, Côte d’Ivoire</p></div><div><h3>Suivez-nous</h3><div class="socials"><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="Instagram">ig</a><a href="#" aria-label="Facebook">fb</a></div></div></div><div class="container footer-bottom"><span>© 2026 Sport Plus Management. Tous droits réservés.</span><span><a href="{% url 'pages:legal' %}">Mentions légales</a> · <a href="{% url 'pages:privacy' %}">Politique de confidentialité</a></span></div></footer>
+  <script src="{% static 'js/site.js' %}" defer></script>
+</body></html>

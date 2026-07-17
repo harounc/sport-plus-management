@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.py[cod]
+db.sqlite3
+media/
+.env
+staticfiles/
+Application design request/
+Application design request.zip
+static/images/generated/*-source.png

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}{{ article.titre }} | Sport Plus Management{% endblock %}{% block description %}{{ article.extrait }}{% endblock %}
+{% block content %}<article class="section article-detail"><div class="container narrow">
+  <nav class="breadcrumb"><a href="{% url 'pages:home' %}">Accueil</a><span>›</span><a href="{% url 'actualites:list' %}">Actualités</a></nav>
+  <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:'j F Y' }}</time><h1>{{ article.titre }}</h1>
+  {% if article.image %}<img src="{{ article.image.url }}" alt="{{ article.titre }}">{% else %}<img class="article-photo" src="{% static article.fallback_image %}" alt="{{ article.titre }}">{% endif %}
+  <div class="article-content">{{ article.contenu|linebreaks }}</div>
+</div></article>{% endblock %}

@@ -1,0 +1,4 @@
+{% load static %}<a class="card player-card" href="{{ joueur.get_absolute_url }}" data-position="{{ joueur.poste }}">
+  {% if joueur.photo %}<img src="{{ joueur.photo.url }}" alt="{{ joueur.nom }}" loading="lazy">{% else %}<img src="{% static joueur.fallback_image %}" alt="Portrait de {{ joueur.nom }}" loading="lazy">{% endif %}
+  <div class="card-body"><span class="eyebrow">{{ joueur.poste }}</span><h3>{{ joueur.nom }}</h3><p>{{ joueur.club_actuel }}</p></div>
+</a>
